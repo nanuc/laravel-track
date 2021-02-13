@@ -8,7 +8,7 @@ class TrackRequest
 {
     public function handle($request, $next)
     {
-        Tracker::track($request);
+        Tracker::track();
 
         return $next($request);
     }

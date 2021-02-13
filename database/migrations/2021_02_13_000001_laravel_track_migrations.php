@@ -61,10 +61,9 @@ class LaravelTrackMigrations extends Migration
 
         Schema::create('track_visitor_ab_test_option', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('track_visitor_id')->nullable();
-            $table->foreignId('track_page_view_id');
-            $table->foreignId('track_ab_test_id')->nullable();
-            $table->foreignId('track_ab_test_option_id')->nullable();
+            $table->foreignId('track_visitor_id');
+            $table->foreignId('track_ab_test_id');
+            $table->foreignId('track_ab_test_option_id');
         });
 
         Schema::create('track_goals', function (Blueprint $table) {
@@ -92,7 +91,7 @@ class LaravelTrackMigrations extends Migration
         Schema::dropIfExists('track_ab_tests');
         Schema::dropIfExists('track_ab_test_options');
         Schema::dropIfExists('track_page_views');
-        Schema::dropIfExists('track_page_view_ab_test_option');
+        Schema::dropIfExists('track_visitor_ab_test_option');
         Schema::dropIfExists('track_goals');
         Schema::dropIfExists('track_page_view_goal');
     }

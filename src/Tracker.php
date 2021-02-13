@@ -21,7 +21,7 @@ class Tracker
     protected $visitor;
     protected $nextOption;
 
-    public function track($request)
+    public function track()
     {
         $agent = new Agent();
         if($agent->isRobot()) {
@@ -29,12 +29,6 @@ class Tracker
         }
 
         $visitor = $this->getVisitor();
-
-        if(!$visitor) {
-            $visitor = Visitor::create();
-            Cookie::queue(self::COOKIE_NAME, $visitor->key, 5 * 365 * 24 * 60);
-            $visitor->fillInfo($request);
-        }
 
         $this->pageView = $visitor->trackPageView();
     }
@@ -99,7 +93,6 @@ class Tracker
         }
 
         $visitor->abTests()->attach($test, [
-            'track_page_view_id' => $this->pageView->id,
             'track_ab_test_option_id' => $option->id
         ]);
         Cache::put(self::CACHE_PREFIX_AB_TESTS . $test->id, $option->id, now()->addMonth());
@@ -117,6 +110,12 @@ class Tracker
     {
         if(!$this->visitor) {
             $this->visitor = Visitor::firstWhere('key', $this->getVisitorKey());
+        }
+
+        if(!$this->visitor) {
+            $this->visitor = Visitor::create();
+            Cookie::queue(self::COOKIE_NAME, $this->visitor->key, 5 * 365 * 24 * 60);
+            $this->visitor->fillInfo();
         }
 
         return $this->visitor;

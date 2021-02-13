@@ -22,7 +22,7 @@ class Visitor extends Model
     public function abTests()
     {
         return $this->belongsToMany(ABTest::class, 'track_visitor_ab_test_option', 'track_visitor_id', 'track_ab_test_id')
-            ->withPivot('track_ab_test_option_id', 'track_page_view_id');
+            ->withPivot('track_ab_test_option_id');
     }
 
     public function trackPageView()
