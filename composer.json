@@ -1,0 +1,32 @@
+{
+    "name": "nanuc/laravel-track",
+    "authors": [
+        {
+            "name": "Sebastian Schöps",
+            "email": "sebastian.schoeps@nanuc.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "jenssegers/agent": "^2.6",
+        "torann/geoip": "^3.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nanuc\\LaravelTrack\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Nanuc\\LaravelTrack\\LaravelTrackServiceProvider"
+            ],
+            "aliases": {
+                "Tracker": "Nanuc\\LaravelTrack\\Facades\\Tracker"
+            }
+        }
+    }
+}
