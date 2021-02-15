@@ -19,6 +19,11 @@ class Visitor extends Model
         });
     }
 
+    public function pageViews()
+    {
+        return $this->hasMany(PageView::class,'track_visitor_id');
+    }
+
     public function abTests()
     {
         return $this->belongsToMany(ABTest::class, 'track_visitor_ab_test_option', 'track_visitor_id', 'track_ab_test_id')

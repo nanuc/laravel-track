@@ -9,9 +9,9 @@ class PageView extends Model
 {
     protected $table = 'track_page_views';
 
-    public function goals()
+      public function goals()
     {
-        return $this->belongsToMany(Goal::class, 'track_page_view_goal', 'track_goal_id', 'track_page_view_id');
+        return $this->belongsToMany(Goal::class, 'track_page_view_goal', 'track_page_view_id', 'track_goal_id');
     }
 
     public function setReachedGoals()

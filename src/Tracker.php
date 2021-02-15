@@ -4,6 +4,7 @@ namespace Nanuc\LaravelTrack;
 
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Route;
 use Jenssegers\Agent\Agent;
 use Nanuc\LaravelTrack\Models\ABTest;
 use Nanuc\LaravelTrack\Models\ABTestOption;
@@ -39,7 +40,17 @@ class Tracker
             'key' => $goal
         ]);
 
-        $this->goals[] = $goal;
+        if(in_array('track', Route::current()->computedMiddleware)) {
+            $this->goals[] = $goal;
+        }
+        else {
+            $this->getVisitor()
+                ->pageViews()
+                ->orderByDesc('id')
+                ->first()
+                ->goals()
+                ->attach($goal);
+        }
     }
 
     public function page($page)
