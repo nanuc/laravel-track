@@ -13,7 +13,7 @@ use Nanuc\LaravelTrack\Models\Visitor;
 
 class Tracker
 {
-    protected const COOKIE_NAME = 'tracker-visitor-id';
+    protected const COOKIE_NAME = 'lt_session';
     protected const CACHE_PREFIX_AB_TESTS = 'tracker-ab-tests';
 
     protected $goals = [];
@@ -114,7 +114,7 @@ class Tracker
 
     protected function getVisitorKey()
     {
-        return Cookie::get('tracker-visitor-id');
+        return Cookie::get(self::COOKIE_NAME);
     }
 
     protected function getVisitor() : ?Visitor
