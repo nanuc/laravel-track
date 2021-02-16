@@ -4,8 +4,7 @@ namespace Nanuc\LaravelTrack;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use Nanuc\LaravelTrack\Models\ABTest;
-use Nanuc\LaravelTrack\Models\ABTestOption;
+use Nanuc\LaravelTrack\Http\Middleware\TrackRequest;
 
 class LaravelTrackServiceProvider extends ServiceProvider
 {
@@ -28,5 +27,6 @@ class LaravelTrackServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('track', fn() => new Tracker());
+        app('router')->aliasMiddleware('track', TrackRequest::class);
     }
 }

@@ -8,20 +8,10 @@ Every user receives a random string which is stored in a cookie to identify them
 #### Run migrations
 Run `php artisan migrate` to create the necessary tables.
 
-#### Add middleware
-To get started, register the tracking middleware in your HTTP kernel's $routeMiddleware array. Your application's HTTP kernel is typically located at `app/Http/Kernel.php`:
-
-```php
-protected $routeMiddleware = [
-    // ...
-    'track' => \Nanuc\LaravelTrack\Http\Middleware\TrackRequest::class,
-];
-```
-Please don't use something different than `track` as the name as otherwise the package will not track correctly.
-
-Once the middleware has been registered, you may attach it to any of your application's route definitions. All routes with this middleware will be tracked.
-
 ## Usage
+### Middleware
+Just add the middleware `track` to the routes you want to track.
+
 ### UTM
 The package tracks the `utm_campaign` and `utm_source` query parameters. Nothing you need to do here.
 
