@@ -7,9 +7,12 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Jenssegers\Agent\Agent;
 use Nanuc\LaravelTrack\Facades\Tracker;
+use Nanuc\LaravelTrack\Models\Traits\HasCustomConnection;
 
 class Visitor extends Model
 {
+    use HasCustomConnection;
+
     protected $table = 'track_visitors';
 
     public static function booted()

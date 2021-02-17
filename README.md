@@ -5,8 +5,14 @@ Every user receives a random string which is stored in a cookie to identify them
 ## Installation
 `composer require nanuc/laravel-track`
 
+#### Publish config (optional)
+`php artisan vendor:publish --provider="Nanuc\LaravelTrack\LaravelTrackServiceProvider" --tag=config`
+
+You can configure a separate database connection.
+
 #### Run migrations
 Run `php artisan migrate` to create the necessary tables.
+
 
 ## Usage
 ### Middleware

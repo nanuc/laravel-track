@@ -12,6 +12,10 @@ class LaravelTrackServiceProvider extends ServiceProvider
     {
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
+        $this->publishes([
+            __DIR__.'/../config/laravel-track.php' => config_path('laravel-track.php'),
+        ], 'config');
+
         Blade::directive('ab', function($expression) {
             $temp = collect(explode(',', $expression))->map(function ($item) {
                 return str_replace(["'", '"'], '',trim($item));
@@ -28,5 +32,9 @@ class LaravelTrackServiceProvider extends ServiceProvider
     {
         $this->app->singleton('track', fn() => new Tracker());
         app('router')->aliasMiddleware('track', TrackRequest::class);
+
+        $this->mergeConfigFrom(
+            __DIR__.'/../config/laravel-track.php', 'laravel-track'
+        );
     }
 }
