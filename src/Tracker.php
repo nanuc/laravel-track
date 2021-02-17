@@ -85,6 +85,11 @@ class Tracker
             return $this->nextOption;
         }
 
+        $agent = new Agent();
+        if($agent->isRobot()) {
+            return $test->options()->first();
+        }
+
         $visitor = $this->getVisitor();
         $visitorOption = $visitor->abTests()->find($test->id);
         if($visitorOption) {
