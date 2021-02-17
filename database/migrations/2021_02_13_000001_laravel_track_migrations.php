@@ -31,6 +31,8 @@ class LaravelTrackMigrations extends Migration
             $table->string('browser_version')->index()->nullable();
             $table->string('country')->index()->nullable();
             $table->string('city')->index()->nullable();
+            $table->decimal('lat', 10, 7)->index()->nullable();
+            $table->decimal('lng', 10, 7)->index()->nullable();
             $table->timestamps();
         });
 

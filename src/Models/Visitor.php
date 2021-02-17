@@ -74,6 +74,8 @@ class Visitor extends Model
                 'browser_version' => $agent->version($browser),
                 'country' => $geo->country,
                 'city' => $geo->city,
+                'lat' => $geo->lat,
+                'lng' => $geo->lon,
             ]);
 
         });
