@@ -43,3 +43,12 @@ Use the following syntax in your blade views:
 @endab
 ```
 You don't need to define the A/B tests' name and options - they will be created on the first use. Options will be rotated on each visit.
+
+## Dashboard
+This package offers a module for [LaravelAdmin](https://github.com/laravel-admin). To use it make sure to install LaravelAdmin first. Afterwards add `\Nanuc\LaravelTrack\LaravelAdmin\LaravelAdmin::class` to `config/laravel-admin`:
+```
+'modules' => [
+    ...
+    \Nanuc\LaravelTrack\LaravelAdmin\LaravelAdmin::class,
+]
+```

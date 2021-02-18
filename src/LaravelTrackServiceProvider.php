@@ -11,6 +11,7 @@ class LaravelTrackServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'track');
 
         $this->publishes([
             __DIR__.'/../config/laravel-track.php' => config_path('laravel-track.php'),
