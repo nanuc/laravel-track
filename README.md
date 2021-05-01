@@ -26,6 +26,11 @@ Set reached goals with `Tracker::goal('goalName');`. You don't need to define th
 
 If the route where you attach a goal is not tracked (e.g. in Livewire routes) the goal will be attached to the last known page view for this visitor.
 
+#### Goals in views
+You can set goals in views too. They will be reached when the place where the component was placed gets visible in the view port. This can be used e.g. to measure if an A/B tested heroshot gets scrolls further down the page.
+
+Just use `<track::goal goal="goalName" />` in your blade view. For this to work you need to have a stack `scripts` in your layout - the name can be configured (`laravel-track.goals.component.stack-name`).
+
 ### Page name
 As Laravel Livewire uses the same routes for different actions it might be useful to give a page a name. You can do this with `Tracker::page('pageName');`.
 
