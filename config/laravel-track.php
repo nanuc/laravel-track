@@ -5,7 +5,7 @@ return [
     'goals' => [
         'component' => [
             'stack-name' => 'scripts',
-            'route' => 'laravel-track/goal',
+            'route' => 'track/goal',
         ],
     ],
 ];

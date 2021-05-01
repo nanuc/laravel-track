@@ -27,6 +27,11 @@ class Visitor extends Model
         return $this->hasMany(PageView::class,'track_visitor_id');
     }
 
+    public function goals()
+    {
+        return $this->hasMany(Goal::class, 'track_visitor_id');
+    }
+
     public function abTests()
     {
         return $this->belongsToMany(ABTest::class, 'track_visitor_ab_test_option', 'track_visitor_id', 'track_ab_test_id')
@@ -57,6 +62,11 @@ class Visitor extends Model
         }
 
         return request()->headers->get('referer');
+    }
+
+    public function hasReachedGoal(Goal $goal)
+    {
+        return $this->goals->contains($goal);
     }
 
     public function fillInfo()

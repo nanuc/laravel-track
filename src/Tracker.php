@@ -44,12 +44,14 @@ class Tracker
             $this->goals[] = $goal;
         }
         else {
-            $this->getVisitor()
-                ->pageViews()
-                ->orderByDesc('id')
-                ->first()
-                ->goals()
-                ->attach($goal, ['track_visitor_id' => $this->getVisitor()->id]);
+            if(!$this->getVisitor()->hasReachedGoal($goal)) {
+                $this->getVisitor()
+                    ->pageViews()
+                    ->orderByDesc('id')
+                    ->first()
+                    ->goals()
+                    ->attach($goal, ['track_visitor_id' => $this->getVisitor()->id]);
+            }
         }
     }
 
