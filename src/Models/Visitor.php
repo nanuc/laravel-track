@@ -29,7 +29,7 @@ class Visitor extends Model
 
     public function goals()
     {
-        return $this->hasMany(Goal::class, 'track_visitor_id');
+        return $this->belongsToMany(Goal::class, 'track_page_view_goal', 'track_visitor_id', 'track_goal_id');
     }
 
     public function abTests()
