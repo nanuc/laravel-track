@@ -44,28 +44,28 @@ class LaravelTrackMigrations extends Migration
 
         Schema::create('track_ab_test_options', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('track_ab_test_id')->nullable();
+            $table->foreignId('track_ab_test_id')->nullable()->index();
             $table->string('key');
             $table->timestamps();
         });
 
         Schema::create('track_page_views', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('track_visitor_id')->nullable();
+            $table->foreignId('track_visitor_id')->nullable()->index();
             $table->string('page_name')->index()->nullable();
             $table->string('route')->index()->nullable();
             $table->string('method')->index();
             $table->string('url', 600)->index();
-            $table->foreignId('track_campaign_id')->nullable();
+            $table->foreignId('track_campaign_id')->nullable()->index();
             $table->string('campaign_source', 600)->index()->nullable();
             $table->timestamps();
         });
 
         Schema::create('track_visitor_ab_test_option', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('track_visitor_id');
-            $table->foreignId('track_ab_test_id');
-            $table->foreignId('track_ab_test_option_id');
+            $table->foreignId('track_visitor_id')->index();
+            $table->foreignId('track_ab_test_id')->index();
+            $table->foreignId('track_ab_test_option_id')->index();
         });
 
         Schema::create('track_goals', function (Blueprint $table) {
@@ -76,8 +76,9 @@ class LaravelTrackMigrations extends Migration
 
         Schema::create('track_page_view_goal', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('track_page_view_id');
-            $table->foreignId('track_goal_id');
+            $table->foreignId('track_visitor_id')->index();
+            $table->foreignId('track_page_view_id')->index();
+            $table->foreignId('track_goal_id')->index();
         });
     }
 

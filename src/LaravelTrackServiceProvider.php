@@ -4,7 +4,9 @@ namespace Nanuc\LaravelTrack;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
 use Nanuc\LaravelTrack\Http\Middleware\TrackRequest;
+use Nanuc\LaravelTrack\LaravelAdmin\Livewire\SuccessMeasurement;
 
 class LaravelTrackServiceProvider extends ServiceProvider
 {
@@ -13,6 +15,8 @@ class LaravelTrackServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'track');
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+
+        Livewire::component('track.success-measurement', SuccessMeasurement::class);
 
         $this->publishes([
             __DIR__.'/../config/laravel-track.php' => config_path('laravel-track.php'),

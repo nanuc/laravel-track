@@ -14,7 +14,8 @@ class PageView extends Model
 
     public function goals()
     {
-        return $this->belongsToMany(Goal::class, 'track_page_view_goal', 'track_page_view_id', 'track_goal_id');
+        return $this->belongsToMany(Goal::class, 'track_page_view_goal', 'track_page_view_id', 'track_goal_id')
+            ->withPivot('track_visitor_id');
     }
 
     public function setReachedGoals()

@@ -49,7 +49,7 @@ class Tracker
                 ->orderByDesc('id')
                 ->first()
                 ->goals()
-                ->attach($goal);
+                ->attach($goal, ['track_visitor_id' => $this->getVisitor()->id]);
         }
     }
 
