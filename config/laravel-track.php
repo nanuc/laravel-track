@@ -8,4 +8,5 @@ return [
             'route' => 'track/goal',
         ],
     ],
+    'track-bots' => false,
 ];

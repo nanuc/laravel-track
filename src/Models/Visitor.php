@@ -73,21 +73,23 @@ class Visitor extends Model
     {
         app()->terminating(function() {
             $agent = new Agent();
-            $geo = geoip(request()->ip());
 
-            $this->update([
-                'device_type' => $agent->deviceType(),
-                'device' => $agent->device(),
-                'platform' => $platform = $agent->platform(),
-                'platform_version' => $agent->version($platform),
-                'browser' => $browser = $agent->browser(),
-                'browser_version' => $agent->version($browser),
-                'country' => $geo->country,
-                'city' => $geo->city,
-                'lat' => $geo->lat,
-                'lng' => $geo->lon,
-            ]);
+            if(config('laravel-track.track-bots') || $agent->deviceType() != 'robot') {
+                $geo = geoip(request()->ip());
 
+                $this->update([
+                    'device_type' => $agent->deviceType(),
+                    'device' => $agent->device(),
+                    'platform' => $platform = $agent->platform(),
+                    'platform_version' => $agent->version($platform),
+                    'browser' => $browser = $agent->browser(),
+                    'browser_version' => $agent->version($browser),
+                    'country' => $geo->country,
+                    'city' => $geo->city,
+                    'lat' => $geo->lat,
+                    'lng' => $geo->lon,
+                ]);
+            }
         });
     }
 }
