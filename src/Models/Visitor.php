@@ -74,7 +74,7 @@ class Visitor extends Model
         app()->terminating(function() {
             $agent = new Agent();
 
-            if(config('laravel-track.track-bots') || $agent->deviceType() != 'robot') {
+            if(config('laravel-track.track-bots') || !$agent->isRobot()) {
                 $geo = geoip(request()->ip());
 
                 $this->update([
