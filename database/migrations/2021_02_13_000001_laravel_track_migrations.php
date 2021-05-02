@@ -77,7 +77,7 @@ class LaravelTrackMigrations extends Migration
         Schema::create('track_page_view_goal', function (Blueprint $table) {
             $table->id();
             $table->foreignId('track_visitor_id')->index();
-            $table->foreignId('track_page_view_id')->index();
+            $table->foreignId('track_page_view_id')->index()->nullable();
             $table->foreignId('track_goal_id')->index();
         });
     }

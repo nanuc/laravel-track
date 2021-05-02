@@ -45,12 +45,12 @@ class Tracker
         }
         else {
             if(!$this->getVisitor()->hasReachedGoal($goal)) {
-                $this->getVisitor()
+                $visitorPageView = $this->getVisitor()
                     ->pageViews()
                     ->orderByDesc('id')
-                    ->first()
-                    ->goals()
-                    ->attach($goal, ['track_visitor_id' => $this->getVisitor()->id]);
+                    ->first();
+
+                $this->getVisitor()->goals()->attach($goal, ['track_page_view_id' => $visitorPageView?->id]);
             }
         }
     }
